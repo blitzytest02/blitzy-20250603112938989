@@ -1,0 +1,21 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "Node.js server with Express.js and multiple endpoints",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --forceExit",
+    "start": "node app.js",
+    "start:basic": "node server.js"
+  },
+  "keywords": ["nodejs", "express", "tutorial"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
