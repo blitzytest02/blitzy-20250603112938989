@@ -14,8 +14,12 @@ before(async () => {
 });
 
 after(async () => {
-  service.kill('SIGTERM');
-  await once(service, 'exit');
+  // A service that has already exited never re-emits 'exit', so awaiting it would never
+  // settle; a process that is gone has released the port.
+  if (service.exitCode === null && service.signalCode === null) {
+    service.kill('SIGTERM');
+    await once(service, 'exit');
+  }
 });
 
 describe('GET /hello', () => {
