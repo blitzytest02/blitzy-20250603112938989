@@ -13,7 +13,10 @@ before(async () => {
   await once(service.stdout, 'data');
 });
 
-after(() => service.kill('SIGTERM'));
+after(async () => {
+  service.kill('SIGTERM');
+  await once(service, 'exit');
+});
 
 describe('GET /hello', () => {
   test('F-003-RQ-002 /hello returns 200', async () => {

@@ -30,7 +30,7 @@ Host and port come from those constants alone; no environment variable overrides
 | GET | `/hello-world` | `200` | `text/plain` | `Hello world` |
 | GET | `/good-evening` | `200` | `text/plain` | `Good evening` |
 
-The listener reads the request path only and never branches on the method, so a registered path answers other methods with the same response; `GET` is the documented method.
+The listener reads the request URL only and never branches on the method, so a registered path answers other methods with the same response; `GET` is the documented method.
 
 ### Examples
 
@@ -58,7 +58,7 @@ Content-Type: text/plain
 Good evening
 ```
 
-Node.js adds `Date`, `Connection: keep-alive`, `Keep-Alive: timeout=5` and `Transfer-Encoding: chunked` to each response; `Content-Length` is not set.
+For an HTTP/1.1 request, Node.js adds `Date`, `Connection: keep-alive`, `Keep-Alive: timeout=5` and `Transfer-Encoding: chunked` to the response, and `Content-Length` is not set. An HTTP/1.0 request receives `Date` and `Connection: close` with an identity-framed body and no `Content-Length`.
 
 ### Other paths
 
